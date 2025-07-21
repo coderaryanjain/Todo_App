@@ -11,6 +11,7 @@ struct ListView: View {
     
         
     @EnvironmentObject var listViewModel: ListViewModel;
+    @EnvironmentObject var themeManager: ThemeManager;
     @State private var showingAddAlert = false
     @State private var newItemText = ""
 
@@ -35,14 +36,28 @@ struct ListView: View {
             .onMove(perform: listViewModel.moveItems)
         }
         .navigationTitle("To-Do List 📋")
-        .navigationBarItems(
-            leading: listViewModel.items.isEmpty ? nil : EditButton(),
-            trailing: Button("Add Item") {
-                newItemText = ""
-                showingAddAlert = true
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                HStack {
+                    if !listViewModel.items.isEmpty {
+                        EditButton()
+                    }
+                    Button(action: {
+                        themeManager.toggleTheme()
+                    }) {
+                        Image(systemName: themeManager.isDarkMode ? "sun.max.fill" : "moon.fill")
+                            .foregroundColor(themeManager.isDarkMode ? .yellow : .blue)
+                    }
+                }
             }
-        
-        )
+            
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button("Add Item") {
+                    newItemText = ""
+                    showingAddAlert = true
+                }
+            }
+        }
         .alert("Add New Todo Item", isPresented: $showingAddAlert) {
             TextField("Enter todo item", text: $newItemText)
             Button("Add") {
@@ -65,4 +80,5 @@ struct ListView: View {
         ListView()
     }
     .environmentObject(ListViewModel())
+    .environmentObject(ThemeManager())
 }

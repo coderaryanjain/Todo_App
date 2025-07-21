@@ -10,12 +10,16 @@ import SwiftUI
 @main
 struct Todo_App: App {
     @StateObject var listViewModel: ListViewModel = ListViewModel()
+    @StateObject var themeManager: ThemeManager = ThemeManager()
+    
     var body: some Scene {
         WindowGroup {
             NavigationStack {
                 ListView()
             }
             .environmentObject(listViewModel)
+            .environmentObject(themeManager)
+            .preferredColorScheme(themeManager.isDarkMode ? .dark : .light)
         }
     }
 }

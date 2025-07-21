@@ -12,6 +12,10 @@ A simple and intuitive Todo application built with SwiftUI that helps you manage
 - **Reorder Tasks**: Use Edit mode to drag and rearrange your tasks in preferred order
 
 ### Visual Features
+- **Dark Mode Support**: Toggle between light and dark themes with a dedicated button
+  - 🌙 Moon icon (blue) in light mode - tap to switch to dark mode
+  - ☀️ Sun icon (yellow) in dark mode - tap to switch to light mode
+  - Theme preference persists between app sessions
 - **Completion Indicators**: 
   - ✅ Green checkmark circle for completed tasks
   - ⭕ Red empty circle for pending tasks
@@ -20,34 +24,51 @@ A simple and intuitive Todo application built with SwiftUI that helps you manage
 - **Empty State**: Friendly message when no tasks exist
 
 ### User Experience
+- **Theme Persistence**: Your preferred light/dark mode setting is automatically saved and restored
 - **Alert-based Input**: Quick and native iOS-style popups for adding and editing tasks
 - **Real-time Updates**: Instant visual feedback when toggling task completion
 - **Intuitive Gestures**: Familiar iOS patterns for editing, deleting, and reordering
 - **Clean Design**: Modern SwiftUI interface following iOS design guidelines
+- **Adaptive Interface**: Seamless switching between light and dark appearances
 
 ## Architecture 🏗️
 
 The app follows the MVVM (Model-View-ViewModel) pattern:
 
 - **Model** (`ItemModel`): Represents individual todo items with unique IDs, titles, and completion status
-- **ViewModel** (`ListViewModel`): Manages the business logic and data operations using `@ObservableObject`
+- **ViewModels**: 
+  - `ListViewModel`: Manages todo list business logic and data operations using `@ObservableObject`
+  - `ThemeManager`: Handles dark mode state management and theme persistence
 - **Views**: 
-  - `ListView`: Main todo list interface
+  - `ListView`: Main todo list interface with dark mode toggle
   - `ListRowView`: Individual todo item row component
+
+## Data Persistence 💾
+
+- **Todo Items**: Stored locally using UserDefaults with JSON encoding/decoding
+- **Theme Preference**: Dark mode setting automatically saved and restored across app sessions
 
 ## Project Structure 📁
 
 ```
 Todo_App/
-├── Todo_App.swift          # Main app entry point
+├── Todo_App.swift          # Main app entry point with theme management
 ├── Models/
 │   └── ItemModel.swift     # Todo item data model
 ├── ViewModels/
-│   └── ListViewModel.swift # Business logic and data management
+│   ├── ListViewModel.swift # Business logic and data management
+│   └── ThemeManager.swift  # Dark mode state and persistence
 └── Views/
-    ├── ListView.swift      # Main todo list view
+    ├── ListView.swift      # Main todo list view with theme toggle
     └── ListRowView.swift   # Individual todo item view
 ```
+
+## Technologies Used 🛠️
+
+- **SwiftUI**: Modern declarative UI framework
+- **UserDefaults**: Local data persistence for both todos and theme preferences
+- **Combine**: Reactive programming with `@ObservableObject` and `@Published` properties
+- **JSON Encoding/Decoding**: Efficient data serialization
 
 ## Requirements 📱
 

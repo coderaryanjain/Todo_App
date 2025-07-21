@@ -47,6 +47,10 @@ struct ListRowView: View {
 }
 
 #Preview {
-    ListRowView(item: ItemModel(title: "Sample Todo Item", isCompleted: false)) .environmentObject(ListViewModel())
-    ListRowView(item: ItemModel(title: "Sample Todo Item", isCompleted: true)) .environmentObject(ListViewModel())
+    ListRowView(item: ItemModel(title: "Sample Todo Item", isCompleted: false))
+        .environmentObject(ListViewModel())
+        .environmentObject(ThemeManager())
+    ListRowView(item: ItemModel(title: "Sample Todo Item", isCompleted: true))
+        .environmentObject(ListViewModel())
+        .environmentObject(ThemeManager())
 }
