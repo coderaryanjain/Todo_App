@@ -14,6 +14,7 @@ struct ListView: View {
     @EnvironmentObject var themeManager: ThemeManager;
     @State private var showingAddAlert = false
     @State private var newItemText = ""
+    @State private var isEditing = false
 
     var body: some View {
         if listViewModel.items.isEmpty {
@@ -35,12 +36,17 @@ struct ListView: View {
             .onDelete(perform: listViewModel.deleteItems)
             .onMove(perform: listViewModel.moveItems)
         }
+        .environment(\.editMode, .constant(isEditing ? EditMode.active : EditMode.inactive))
         .navigationTitle("To-Do List 📋")
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 HStack {
                     if !listViewModel.items.isEmpty {
-                        EditButton()
+                        Button(isEditing ? "Done" : "Edit") {
+                            withAnimation {
+                                isEditing.toggle()
+                            }
+                        }
                     }
                     Button(action: {
                         themeManager.toggleTheme()
@@ -76,9 +82,9 @@ struct ListView: View {
 }
 
 #Preview {
-    NavigationStack {
+
         ListView()
-    }
+    
     .environmentObject(ListViewModel())
     .environmentObject(ThemeManager())
 }
