@@ -2,6 +2,21 @@
 
 A simple and intuitive Todo application built with SwiftUI that helps you manage your daily tasks efficiently.
 
+## Demo 🎬
+
+Check out the app in action! The demo showcases all the key features including adding tasks, editing, deleting, reordering, and the dark mode toggle functionality.
+
+📹 **[View Demo Video](./demo/todo-app-demo.mov)**
+
+*The demo video demonstrates:*
+- Adding new todo items
+- Marking tasks as complete/incomplete
+- Editing existing tasks
+- Deleting tasks with swipe gestures
+- Reordering tasks in edit mode
+- Switching between light and dark themes
+- Theme persistence across app sessions
+
 ## Features ✨
 
 ### Core Functionality
@@ -86,7 +101,7 @@ Todo_App/
 
 1. **Clone or Download the Project**
    ```bash
-   git clone [repo-url]
+   git clone https://github.com/coderaryanjain/Todo_App.git
    # or download and extract the ZIP file
    ```
 
@@ -136,7 +151,7 @@ Todo_App/
 
 ## Contributing 🤝
 
-Feel free to fork this project and submit pull requests for any improvements!
+Feel free to fork this project and submit pull requests. For major changes, please open an issue first to discuss what you would like to change.
 
 ## License 📄
 
